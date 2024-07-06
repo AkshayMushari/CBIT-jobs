@@ -11,7 +11,10 @@ const applicationSchema = new mongoose.Schema({
   email: {
     type: String,
     required: [true, "Please enter your Email!"],
-    validate: [validator.isEmail, "Please provide a valid Email!"],
+    validate: {
+      validator: validator.isEmail,
+      message: "Please provide a valid Email!",
+    },
   },
   coverLetter: {
     type: String,
@@ -27,11 +30,11 @@ const applicationSchema = new mongoose.Schema({
   },
   resume: {
     public_id: {
-      type: String, 
+      type: String,
       required: true,
     },
     url: {
-      type: String, 
+      type: String,
       required: true,
     },
   },

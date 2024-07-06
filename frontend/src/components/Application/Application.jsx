@@ -1,8 +1,9 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import { Context } from "../../main";
+
 const Application = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -12,16 +13,36 @@ const Application = () => {
   const [resume, setResume] = useState(null);
 
   const { isAuthorized, user } = useContext(Context);
-
   const navigateTo = useNavigate();
+  const { id } = useParams();
 
-  // Function to handle file input changes
+  useEffect(() => {
+    const fetchPreviousApplication = async () => {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:4000/api/v1/application/previous`,
+          { withCredentials: true }
+        );
+        if (data.application) {
+          setName(data.application.name);
+          setEmail(data.application.email);
+          setCoverLetter(data.application.coverLetter);
+          setPhone(data.application.phone);
+          setAddress(data.application.address);
+        }
+      } catch (error) {
+        console.error("Error fetching previous application:", error);
+      }
+    };
+
+    fetchPreviousApplication();
+  }, []);
+
   const handleFileChange = (event) => {
     const resume = event.target.files[0];
     setResume(resume);
   };
 
-  const { id } = useParams();
   const handleApplication = async (e) => {
     e.preventDefault();
     const formData = new FormData();

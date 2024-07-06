@@ -33,69 +33,69 @@ const Login = () => {
       setRole("");
       setIsAuthorized(true);
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message || "Something went wrong");
     }
   };
 
-  if(isAuthorized){
-    return <Navigate to={'/'}/>
+  if (isAuthorized) {
+    return <Navigate to="/" />;
   }
 
   return (
-    <>
-      <section className="authPage">
-        <div className="container">
-          <div className="header">
-            <img src="/JobZeelogo.png" alt="logo" />
-            <h3>Login to your account</h3>
+    <section className="authPage">
+      <div className="container">
+        <div className="header">
+          <img src="/JobZeelogo.png" alt="logo" />
+          <h3>Login to your account</h3>
+        </div>
+        <form onSubmit={handleLogin}>
+          <div className="inputTag">
+            <label>Login As</label>
+            <div>
+              <select value={role} onChange={(e) => setRole(e.target.value)} required>
+                <option value="">Select Role</option>
+                <option value="Employer">Employer</option>
+                <option value="Job Seeker">Job Seeker</option>
+              </select>
+              <FaRegUser />
+            </div>
           </div>
-          <form>
-            <div className="inputTag">
-              <label>Login As</label>
-              <div>
-                <select value={role} onChange={(e) => setRole(e.target.value)}>
-                  <option value="">Select Role</option>
-                  <option value="Employer">Employer</option>
-                  <option value="Job Seeker">Job Seeker</option>
-                </select>
-                <FaRegUser />
-              </div>
+          <div className="inputTag">
+            <label>Email Address</label>
+            <div>
+              <input
+                type="email"
+                placeholder="zk@gmail.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <MdOutlineMailOutline />
             </div>
-            <div className="inputTag">
-              <label>Email Address</label>
-              <div>
-                <input
-                  type="email"
-                  placeholder="zk@gmail.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <MdOutlineMailOutline />
-              </div>
+          </div>
+          <div className="inputTag">
+            <label>Password</label>
+            <div>
+              <input
+                type="password"
+                placeholder="Your Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <RiLock2Fill />
             </div>
-            <div className="inputTag">
-              <label>Password</label>
-              <div>
-                <input
-                  type="password"
-                  placeholder="Your Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <RiLock2Fill />
-              </div>
-            </div>
-            <button type="submit" onClick={handleLogin}>
-              Login
-            </button>
-            <Link to={"/register"}>Register Now</Link>
-          </form>
-        </div>
-        <div className="banner">
-          <img src="/login.png" alt="login" />
-        </div>
-      </section>
-    </>
+          </div>
+          <button type="submit">
+            Login
+          </button>
+          <Link to="/register">Register Now</Link>
+        </form>
+      </div>
+      <div className="banner">
+        <img src="/login.png" alt="login" />
+      </div>
+    </section>
   );
 };
 

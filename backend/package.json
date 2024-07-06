@@ -8,7 +8,7 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "author": "",
+  "author": "Akshay Mushari",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -20,6 +20,7 @@
     "express-fileupload": "^1.4.3",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.3",
+    "punycode": "^2.3.1",
     "validator": "^13.11.0"
   }
 }

@@ -20,7 +20,7 @@ const PopularCategories = () => {
     },
     {
       id: 2,
-      title: "Mobile App Development",
+      title: "Artificial Intelligence ",
       subTitle: "500 Open Positions",
       icon: <TbAppsFilled />,
     },
@@ -44,7 +44,7 @@ const PopularCategories = () => {
     },
     {
       id: 6,
-      title: "Artificial Intelligence",
+      title: "Mobile App Development",
       subTitle: "867 Open Positions",
       icon: <GiArtificialIntelligence />,
     },
